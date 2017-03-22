@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Paintapp.StartController">
+  <children>
+    <Pane prefHeight="552.0" prefWidth="199.99990000000253" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="-1.48" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="1.48">
+      <children>
+        <Button id="AddOvalButton" layoutX="125.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#btnAddOvalClick" text="Add Oval" />
+        <Label layoutX="14.0" layoutY="113.0" text="Color:" />
+        <ComboBox fx:id="OvalColorField" editable="false" layoutX="74.0" layoutY="110.0" minHeight="15.9609375" prefHeight="15.9609375" prefWidth="119.0" promptText="">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+        <Pane blendMode="SRC_OVER" layoutX="0.0" layoutY="0.0" prefHeight="103.0" prefWidth="200.0" style="-fx-background-color:  lightgray;">
+          <children>
+            <TextField fx:id="XField" layoutX="74.0" layoutY="9.0" prefWidth="119.0" text="500" />
+            <TextField id="Yfield" fx:id="YField" layoutX="74.0" layoutY="31.0" prefWidth="119.0" />
+            <TextField fx:id="WField" layoutX="74.0" layoutY="53.0" prefWidth="119.0" />
+            <TextField fx:id="HField" layoutX="74.0" layoutY="75.0" prefWidth="119.0" />
+            <Label layoutX="14.0" layoutY="34.0" text="Y:" />
+            <Label layoutX="14.0" layoutY="12.0" text="X:" />
+            <Label layoutX="14.0" layoutY="56.0" text="Width:" />
+            <Label layoutX="14.0" layoutY="78.0" text="Height:" />
+          </children>
+        </Pane>
+        <Pane layoutX="0.0" layoutY="155.0" prefHeight="53.0" prefWidth="200.0" style="-fx-background-color:  lightgray;&#10;">
+          <children>
+            <Button fx:id="AddImageButton" layoutX="114.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#AddImageButtonClick" text="Add Image" />
+            <Label layoutX="14.0" layoutY="11.0" text="Image URL:" />
+            <TextField fx:id="imgURL" layoutX="74.0" layoutY="8.0" prefWidth="119.0" />
+          </children>
+        </Pane>
+        <Pane layoutX="0.0" layoutY="263.0" prefHeight="120.0" prefWidth="200.0" style="-fx-background-color:  lightgray;&#10;">
+          <children>
+            <Button id="AddPolygonButton" layoutX="100.0" layoutY="96.0" mnemonicParsing="false" text="Add Polygon" />
+            <TextField id="PointXField" layoutX="69.0" layoutY="6.0" prefWidth="119.0" />
+            <TextField id="PointYField" layoutX="69.0" layoutY="28.0" prefWidth="119.0" />
+            <Label layoutX="9.0" layoutY="31.0" text="Y:" />
+            <Label layoutX="9.0" layoutY="9.0" text="X:" />
+            <Button id="AddPointButton" layoutX="115.0" layoutY="50.0" mnemonicParsing="false" text="Add Point" />
+            <ComboBox id="PointsField" layoutX="11.0" layoutY="75.0" prefHeight="21.0" prefWidth="177.0" promptText="Points">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+          </children>
+        </Pane>
+        <Button id="AddTextButton" layoutX="126.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#btnAddTextClick" text="Add Text" />
+        <Label layoutX="14.0" layoutY="218.0" text="Text:" />
+        <TextField fx:id="TextField" layoutX="53.0" layoutY="215.0" prefWidth="140.0" />
+        <Button fx:id="SaveFileButton" layoutX="120.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#btnSaveFileClick" prefWidth="79.0" text="Save to file" />
+        <Button fx:id="LoadFileButton" layoutX="120.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#btnLoadFileClick" prefWidth="79.0" text="Load File" />
+        <Button fx:id="NewFileButton" layoutX="120.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#btnNewFileClick" prefWidth="79.0" text="New File" />
+        <Button fx:id="LoadDBButton" layoutX="8.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#btnDBLoadClick" text="Load From DB" />
+        <TextField fx:id="DBText" layoutX="1.0" layoutY="393.0" prefWidth="119.0" text="Database name" />
+        <Button id="SaveDBButton" fx:id="saveDBButton" layoutX="17.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#btnDBsaveClick" prefWidth="78.9998779296875" text="Save to DB" />
+        <ComboBox fx:id="cmbBox" layoutX="11.0" layoutY="491.0" prefHeight="21.0" prefWidth="187.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+        <Button fx:id="btnDeleteItem" layoutX="14.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#btnDeleteItemClick" text="Delete selected" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
