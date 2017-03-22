@@ -38,12 +38,14 @@ public class Drawing extends DrawingItem implements Serializable {
 
     @Override
     public void paintUsing(IPaintable paintable) {
-       for(DrawingItem drawingItem : items){
+        for (DrawingItem drawingItem : items) {
             drawingItem.paintUsing(paintable);
         }
+        observableList = FXCollections.observableList(items);
     }
-    public ObservableList<DrawingItem> itemsToObserve() {   
-        return unmodifiableObservableList(observableList);   
+
+    public ObservableList<DrawingItem> itemsToObserve() {
+        return unmodifiableObservableList(observableList);
     }
 
     @Override
@@ -59,5 +61,11 @@ public class Drawing extends DrawingItem implements Serializable {
     @Override
     public double getHeight() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override 
+    public String toString()
+    {
+    return "Image: "+name+" Containing"+items.size()+" items";
     }
 }

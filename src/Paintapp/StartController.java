@@ -111,8 +111,8 @@ public class StartController implements Initializable {
             }
         }
         tekenApp.drawing.items.add(a);
-
         tekenApp.draw();
+        setItems(tekenApp.drawing.itemsToObserve());
     }
 
     public void btnAddTextClick() {
@@ -128,6 +128,7 @@ public class StartController implements Initializable {
         }
         tekenApp.drawing.items.add(a);
         tekenApp.draw();
+        setItems(tekenApp.drawing.itemsToObserve());
     }
 
     public void AddImageButtonClick() {
@@ -141,8 +142,8 @@ public class StartController implements Initializable {
             }
         }
         tekenApp.drawing.items.add(a);
-
         tekenApp.draw();
+        setItems(tekenApp.drawing.itemsToObserve());
     }
 
     public void btnSaveFileClick() {
@@ -152,6 +153,7 @@ public class StartController implements Initializable {
     public void btnLoadFileClick() {
         tekenApp.drawing = FileSaver.load("C:/Users/piete/Documents/serialized.ser");
         tekenApp.draw();
+        setItems(tekenApp.drawing.itemsToObserve());
     }
 
     public void btnNewFileClick() {
@@ -163,6 +165,7 @@ public class StartController implements Initializable {
     public void btnDBLoadClick() throws SQLException {
         tekenApp.drawing = DatabaseSaver.load(DBText.getText());
         tekenApp.draw();
+        setItems(tekenApp.drawing.itemsToObserve());
     }
 
     public void btnDBsaveClick() throws SQLException {
@@ -176,15 +179,12 @@ public class StartController implements Initializable {
     }
 
     public void btnDeleteItemClick() {
-        int i = cmbBox.getSelectionModel().getSelectedIndex();
-        i = i + 1;
-        //tekenApp.drawing.items.remove(cmbBox.getValue());
+        tekenApp.drawing.items.remove(cmbBox.getSelectionModel().getSelectedIndex());
+        tekenApp.draw();
     }
 
     public void setItems(ObservableList<DrawingItem> list) {
-        for (DrawingItem d : list) {
-            cmbBox.setItems(list);
-        }
+        cmbBox.setItems(list);
     }
 
     public Color addColor(String color) {
