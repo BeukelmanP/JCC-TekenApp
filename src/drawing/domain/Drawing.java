@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
  */
 public class Drawing extends DrawingItem implements Serializable {
 
-    public List<DrawingItem> items = new ArrayList<>();
+    private List<DrawingItem> items = new ArrayList<>();
     private transient ObservableList<DrawingItem> observableList;
     private String name;
     IPaintable painting;
@@ -48,6 +48,14 @@ public class Drawing extends DrawingItem implements Serializable {
         return unmodifiableObservableList(observableList);
     }
 
+    public void setItems(ObservableList<DrawingItem> list) {
+        //this.observableList = list;
+    }
+
+    public void addItem(DrawingItem d) {
+        observableList.add(d);
+    }
+
     @Override
     public Point getAnchor() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -62,10 +70,9 @@ public class Drawing extends DrawingItem implements Serializable {
     public double getHeight() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    @Override 
-    public String toString()
-    {
-    return "Image: "+name+" Containing"+items.size()+" items";
+
+    @Override
+    public String toString() {
+        return "Image: " + name + " Containing" + items.size() + " items";
     }
 }

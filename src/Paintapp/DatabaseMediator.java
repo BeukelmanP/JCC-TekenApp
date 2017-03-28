@@ -69,22 +69,22 @@ public class DatabaseMediator {
                 Point P = new Point(rs.getDouble("LOCX"), rs.getDouble("LOCY"));
                 switch (rs.getString("TYPE")) {
                     case "OVAL":
-                        drawing1.items.add(new Oval(P, rs.getDouble("WIDTH"), rs.getDouble("HEIGHT"), rs.getDouble("WEIGHT"), addColor(rs.getString("COLOR"))));
+                        drawing1.addItem(new Oval(P, rs.getDouble("WIDTH"), rs.getDouble("HEIGHT"), rs.getDouble("WEIGHT"), addColor(rs.getString("COLOR"))));
                         break;
                     case "IMAGE":
                         String s = rs.getString("IMAGEURL");
                         File f = new File(s, s);
-                        drawing1.items.add(new Image(f, P, rs.getDouble("WIDTH"), rs.getDouble("HEIGHT")));
+                        drawing1.addItem(new Image(f, P, rs.getDouble("WIDTH"), rs.getDouble("HEIGHT")));
                         break;
                     case "TEXT":
-                        drawing1.items.add(new PaintedText(rs.getString("TEXT"), rs.getString("FONT"), P, rs.getDouble("WIDTH"), rs.getDouble("HEIGHT"), addColor(rs.getString("COLOR"))));
+                        drawing1.addItem(new PaintedText(rs.getString("TEXT"), rs.getString("FONT"), P, rs.getDouble("WIDTH"), rs.getDouble("HEIGHT"), addColor(rs.getString("COLOR"))));
                         break;
                     case "POLYGON":
                         Point[] p = getPolygonPoints(rs.getInt("PolygonID"));
-                        drawing1.items.add(new Polygon(p, 0, 0, 0, addColor(rs.getString("COLOR"))));
+                        drawing1.addItem(new Polygon(p, 0, 0, 0, addColor(rs.getString("COLOR"))));
                         break;
                     case "DRAWING":
-                        drawing1.items.add(load(rs.getString("externalImage")));
+                        drawing1.addItem(load(rs.getString("externalImage")));
                         break;
 
                 }
@@ -177,7 +177,7 @@ public class DatabaseMediator {
             Statement st1 = con.createStatement();
             String sql1 = "INSERT INTO drawing (NAME) VALUES('" + drawing.getName() + "')";
             st1.executeUpdate(sql1);
-            for (DrawingItem i : drawing.items) {
+            for (DrawingItem i : drawing.itemsToObserve()) {
                 String color = translateColor(i.getColor());
                 if (i instanceof Oval) {
                     Statement st2 = con.createStatement();
