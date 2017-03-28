@@ -90,9 +90,6 @@ public class StartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tekenApp = TekenAppFX.getInstance();
-        tekenApp.drawing.itemsToObserve().addListener((ListChangeListener) (c -> {
-            setItems(tekenApp.drawing.itemsToObserve());
-        }));
         ObservableList<String> colors = observableArrayList("RED", "GREEN", "WHITE", "BLUE", "BLACK");
         OvalColorField.setItems(colors);
     }
@@ -110,7 +107,7 @@ public class StartController implements Initializable {
                 break;
             }
         }
-        tekenApp.drawing.items.add(a);
+        tekenApp.addDrawingItem(a);
         tekenApp.draw();
         setItems(tekenApp.drawing.itemsToObserve());
     }
@@ -129,7 +126,7 @@ public class StartController implements Initializable {
                 break;
             }
         }
-        tekenApp.drawing.items.add(a);
+        tekenApp.addDrawingItem(a);
         tekenApp.draw();
         setItems(tekenApp.drawing.itemsToObserve());
     }
@@ -144,7 +141,7 @@ public class StartController implements Initializable {
                 break;
             }
         }
-        tekenApp.drawing.items.add(a);
+        tekenApp.addDrawingItem(a);
         tekenApp.draw();
         setItems(tekenApp.drawing.itemsToObserve());
     }
@@ -182,8 +179,9 @@ public class StartController implements Initializable {
     }
 
     public void btnDeleteItemClick() {
-        tekenApp.drawing.items.remove(cmbBox.getSelectionModel().getSelectedIndex());
+        tekenApp.removeDrawingItem(cmbBox.getSelectionModel().getSelectedIndex());
         tekenApp.draw();
+        setItems(tekenApp.drawing.itemsToObserve());
     }
 
     public void setItems(ObservableList<DrawingItem> list) {

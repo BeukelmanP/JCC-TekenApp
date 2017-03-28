@@ -37,7 +37,7 @@ import javafx.stage.Stage;
 public class TekenAppFX extends Application {
 
     private static TekenAppFX instance;
-    public Drawing drawing= new Drawing("Henks Tekening");
+    public Drawing drawing = new Drawing("Henks Tekening");
     IPaintable paintable;
     Canvas cvs;
 
@@ -54,7 +54,7 @@ public class TekenAppFX extends Application {
         root.getChildren().add(parent);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        
+
         /*
         Canvas cvs = new Canvas();
         StackPane root = new StackPane();
@@ -85,15 +85,26 @@ public class TekenAppFX extends Application {
         drawing.items.add(image);
 
         draw();
-*/
+         */
+    }
+
+    public void addDrawingItem(DrawingItem d) {
+        drawing.items.add(d);
+    }
+
+    public void removeDrawingItem(int index) {
+        drawing.items.remove(index);
+    }
+
+    public Drawing getDrawing() {
+        return drawing;
     }
 
     public void draw() {
-        
+
         cvs.getGraphicsContext2D().clearRect(0, 0, 600, 600);
         drawing.paintUsing(paintable);
-        
-        
+
     }
 
     /**
@@ -102,6 +113,7 @@ public class TekenAppFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     public static TekenAppFX getInstance() {
         return instance;
     }
