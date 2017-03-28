@@ -116,7 +116,10 @@ public class StartController implements Initializable {
     }
 
     public void btnAddTextClick() {
-        Color c = addColor((String) OvalColorField.getValue());
+        Color c = null;
+        if (OvalColorField.getValue() != null) {
+            c = addColor((String) OvalColorField.getValue());
+        }
         boolean overlaps = false;
         PaintedText a = new PaintedText(TextField.getText(), "Arial", new Point(Double.parseDouble(XField.getText()), Double.parseDouble(YField.getText())), 0.0, 0.0, c);
         for (DrawingItem b : tekenApp.drawing.items) {
