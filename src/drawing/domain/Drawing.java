@@ -55,6 +55,9 @@ public class Drawing extends DrawingItem implements Serializable {
     public void addItem(DrawingItem d) {
         observableList.add(d);
     }
+    public void removeItem(int index) {
+        observableList.remove(index);
+    }
 
     @Override
     public Point getAnchor() {

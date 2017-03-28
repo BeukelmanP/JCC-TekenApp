@@ -94,7 +94,7 @@ public class TekenAppFX extends Application {
     }
 
     public void removeDrawingItem(int index) {
-        drawing.items.remove(index);
+        drawing.removeItem(index);
     }
 
     public Drawing getDrawing() {

@@ -101,7 +101,7 @@ public class StartController implements Initializable {
         Color c = addColor((String) OvalColorField.getValue());
         boolean overlaps = false;
         Oval a = new Oval(new Point(Double.parseDouble(XField.getText()), Double.parseDouble(YField.getText())), Double.parseDouble(WField.getText()), Double.parseDouble(HField.getText()), 0.0, c);
-        for (DrawingItem b : tekenApp.getDrawing().items) {
+        for (DrawingItem b : tekenApp.getDrawing().itemsToObserve()) {
             overlaps = a.overlaps(b);
             if (overlaps) {
                 JOptionPane.showMessageDialog(null, "Overlap detected", "InfoBox: " + "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -120,7 +120,7 @@ public class StartController implements Initializable {
         }
         boolean overlaps = false;
         PaintedText a = new PaintedText(TextField.getText(), "Arial", new Point(Double.parseDouble(XField.getText()), Double.parseDouble(YField.getText())), 0.0, 0.0, c);
-        for (DrawingItem b : tekenApp.getDrawing().items) {
+        for (DrawingItem b : tekenApp.getDrawing().itemsToObserve()) {
             overlaps = a.overlaps(b);
             if (overlaps) {
                 JOptionPane.showMessageDialog(null, "Overlap detected", "InfoBox: " + "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -135,7 +135,7 @@ public class StartController implements Initializable {
     public void AddImageButtonClick() {
         boolean overlaps = false;
         Image a = new Image(new File(imgURL.getText(), imgURL.getText()), new Point(Double.parseDouble(XField.getText()), Double.parseDouble(YField.getText())), Double.parseDouble(WField.getText()), Double.parseDouble(HField.getText()));
-        for (DrawingItem b : tekenApp.getDrawing().items) {
+        for (DrawingItem b : tekenApp.getDrawing().itemsToObserve()) {
             overlaps = a.overlaps(b);
             if (overlaps) {
                 JOptionPane.showMessageDialog(null, "Overlap detected", "InfoBox: " + "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -154,19 +154,19 @@ public class StartController implements Initializable {
     public void btnLoadFileClick() {
         tekenApp.setDrawing(FileSaver.load("C:/Users/piete/Documents/serialized.ser"));
         tekenApp.draw();
-        //setItems(tekenApp.getDrawing().itemsToObserve());
+        setItems(tekenApp.getDrawing().itemsToObserve());
     }
 
     public void btnNewFileClick() {
         tekenApp.setDrawing(new Drawing("tekening"));
         tekenApp.draw();
-
+        setItems(tekenApp.getDrawing().itemsToObserve());
     }
 
     public void btnDBLoadClick() throws SQLException {
         tekenApp.setDrawing(DatabaseSaver.load(DBText.getText()));
         tekenApp.draw();
-        //setItems(tekenApp.getDrawing().itemsToObserve());
+        setItems(tekenApp.getDrawing().itemsToObserve());
     }
 
     public void btnDBsaveClick() throws SQLException {
@@ -186,7 +186,7 @@ public class StartController implements Initializable {
     }
 
     public void setItems(ObservableList<DrawingItem> list) {
-        //cmbBox.setItems(list);
+        cmbBox.setItems(list);
     }
 
     public Color addColor(String color) {
