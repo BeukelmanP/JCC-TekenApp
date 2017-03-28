@@ -38,7 +38,7 @@ public class Drawing extends DrawingItem implements Serializable {
 
     @Override
     public void paintUsing(IPaintable paintable) {
-        for (DrawingItem drawingItem : items) {
+        for (DrawingItem drawingItem : observableList) {
             drawingItem.paintUsing(paintable);
         }
         observableList = FXCollections.observableList(items);
